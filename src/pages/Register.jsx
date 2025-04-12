@@ -1,9 +1,17 @@
+import React, { useState } from "react";
 import { Link } from "react-router";
 import FormAuth from "../components/FormAuth/FormAuth";
+import useAuth from "../hooks/useAuth";
 
 function Register() {
-  const handleSubmit = (username, password) => {
-    console.log("Registration attempt", { username, password });
+  const { register, error } = useAuth();
+  const [registrationError, setRegistrationError] = useState(null);
+
+  const handleSubmit = async (username, password) => {
+    const success = await register(username, password);
+    if (!success && error) {
+      setRegistrationError(error);
+    }
   };
 
   return (
@@ -50,6 +58,12 @@ function Register() {
           />
         </div>
       </div>
+
+      {registrationError && (
+        <div className="fixed bottom-4 right-4 bg-red-100 border-l-4 border-red-500 text-red-700 p-4 shadow-lg rounded">
+          <p>{registrationError}</p>
+        </div>
+      )}
     </div>
   );
 }
