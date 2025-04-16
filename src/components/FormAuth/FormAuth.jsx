@@ -24,12 +24,12 @@ function FormAuth({
   };
 
   return (
-    <div className="md:w-1/2 p-10 flex flex-col justify-center">
+    <div className="md:w-1/2 p-10 flex flex-col justify-center dark:bg-gray-800 transition-colors duration-300">
       <div className="mb-8 text-center">
-        <div className="bg-teal-50 w-16 h-16 mx-auto rounded-full flex items-center justify-center transform transition-transform duration-300 hover:scale-110">
-          <User size={32} className="text-teal-600" />
+        <div className="bg-teal-50 dark:bg-teal-900/50 w-16 h-16 mx-auto rounded-full flex items-center justify-center transform transition-transform duration-300 hover:scale-110">
+          <User size={32} className="text-teal-600 dark:text-teal-400" />
         </div>
-        <h2 className="mt-6 text-2xl font-bold text-gray-800 tracking-tight">
+        <h2 className="mt-6 text-2xl font-bold text-gray-800 dark:text-white tracking-tight">
           {title}
         </h2>
       </div>
@@ -39,7 +39,7 @@ function FormAuth({
           <div className="transition-all duration-300 transform">
             <label
               htmlFor="username"
-              className="block text-sm font-medium text-gray-700 mb-1.5 ml-1"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 ml-1"
             >
               Username
             </label>
@@ -54,7 +54,7 @@ function FormAuth({
                 type="text"
                 autoComplete="username"
                 required
-                className="pl-11 w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300 ease-in-out"
+                className="pl-11 w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all duration-300 ease-in-out"
                 placeholder="Enter your username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
@@ -67,7 +67,7 @@ function FormAuth({
           <div className="transition-all duration-300 transform">
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-gray-700 mb-1.5 ml-1"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 ml-1"
             >
               Password
             </label>
@@ -84,7 +84,7 @@ function FormAuth({
                   showNameField ? "new-password" : "current-password"
                 }
                 required
-                className="pl-11 w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300 ease-in-out"
+                className="pl-11 w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all duration-300 ease-in-out"
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
