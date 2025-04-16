@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends, HTTPException, status
+from fastapi import FastAPI, Depends, HTTPException, status, Body
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
@@ -79,3 +79,52 @@ async def validate_token(current_user: models.User = Depends(auth.get_current_ac
             "is_active": current_user.is_active
         }
     }
+
+@app.get("/preferences", response_model=schemas.Preferences, tags=["Preferences"],
+         summary="Get user preferences")
+async def get_preferences(current_user: models.User = Depends(auth.get_current_active_user),
+                         db: Session = Depends(get_db)):
+    """
+    Retrieve the preferences for the current logged-in user.
+    """
+    # Check if user has preferences already
+    user_preferences = db.query(models.Preferences).filter(
+        models.Preferences.user_id == current_user.id
+    ).first()
+    
+    # If not, create default preferences
+    if not user_preferences:
+        user_preferences = models.Preferences(user_id=current_user.id)
+        db.add(user_preferences)
+        db.commit()
+        db.refresh(user_preferences)
+        
+    return user_preferences
+
+@app.post("/preferences", response_model=schemas.Preferences, tags=["Preferences"],
+          summary="Update user preferences")
+async def update_preferences(
+    preferences: schemas.PreferencesUpdate,
+    current_user: models.User = Depends(auth.get_current_active_user),
+    db: Session = Depends(get_db)
+):
+    """
+    Update preferences for the current logged-in user.
+    """
+    # Get current preferences
+    user_preferences = db.query(models.Preferences).filter(
+        models.Preferences.user_id == current_user.id
+    ).first()
+    
+    # If no preferences exist yet, create them
+    if not user_preferences:
+        user_preferences = models.Preferences(user_id=current_user.id)
+        db.add(user_preferences)
+    
+    # Update preferences with new values
+    for key, value in preferences.dict().items():
+        setattr(user_preferences, key, value)
+    
+    db.commit()
+    db.refresh(user_preferences)
+    return user_preferences
