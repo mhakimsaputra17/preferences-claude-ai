@@ -21,3 +21,29 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     username: Optional[str] = None
+
+# Preferences schemas
+class PreferencesBase(BaseModel):
+    theme: str = "light"
+    language: str = "english"
+    notifications: bool = True
+
+class PreferencesCreate(PreferencesBase):
+    pass
+
+class PreferencesUpdate(PreferencesBase):
+    pass
+
+class Preferences(PreferencesBase):
+    id: int
+    user_id: int
+    
+    class Config:
+        orm_mode = True
+
+# Extend User schema to include preferences
+class UserWithPreferences(User):
+    preferences: Optional[Preferences] = None
+    
+    class Config:
+        orm_mode = True
