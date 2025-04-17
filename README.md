@@ -166,25 +166,47 @@ The system uses WebSockets to ensure real-time updates across all interfaces, me
 
 ### Claude Desktop Setup
 
-1. Install Claude Desktop from [claude.ai/desktop](https://claude.ai/desktop)
+1. Install Claude Desktop from [claude.ai/desktop](https://claude.ai/download)
 
-2. Start the FastMCP server:
+2. **Log in to your Claude account** in the desktop application
+
+3. **Enable Developer Mode**:
+
+   - Open Claude Desktop
+   - Navigate to Settings (gear icon)
+   - Enable the Developer Mode option
+
+4. **Configure the MCP connection**:
+
+   - Go to Settings > Developer tab
+   - Locate the `claude_desktop_config.json` file reference
+   - Click "Edit Config" to see the configuration file location
+
+5. **Install the MCP server configuration**:
 
    ```bash
    cd backend
-   python mcp_server.py
+   # This command will automatically generate the necessary config in claude_desktop_config.json
+   mcp install mcp_server.py
    ```
 
-3. Open Claude Desktop and open the settings menu by clicking the icon in the top-left corner
+6. **Run the MCP server**:
 
-   <!-- Claude Desktop MCP Connection Screenshot - Will be added by user -->
+   ```bash
+   # Development mode with auto-reload
+   mcp dev mcp_server.py
 
-   ![Screenshot (542)](https://github.com/user-attachments/assets/8cdbc87f-40b6-4db4-9d95-26f7d84a7626)
+   # OR Production mode
+   mcp run mcp_server.py
+   ```
 
+7. **Restart Claude Desktop**:
 
-4. Select "Connect to local MCP server" and connect to the running server
+   - On Windows: End the task via Task Manager
+   - On macOS: Force quit the application
+   - Then restart Claude Desktop
 
-5. Claude will now be connected to the preferences system and can respond to preference-related requests
+8. Claude will now be connected to the preferences system and can respond to preference-related requests
 
    <!-- Claude Desktop Integration Demo Video - Will be added by user -->
 
