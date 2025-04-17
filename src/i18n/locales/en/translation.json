@@ -114,5 +114,22 @@
     "loginSuccess": "Successfully logged in to your dashboard",
     "notificationAdded": "New notification added",
     "preferencesUpdated": "Your preferences have been successfully updated"
+  },
+  "claude": {
+    "preferences": {
+      "updated": "Preferences Updated",
+      "updatedBy": "Claude Assistant has updated your preferences",
+      "themeChanged": "Theme changed to {{theme}}",
+      "languageChanged": "Language changed to {{language}}",
+      "notificationsToggled": "Notifications {{status}}"
+    },
+    "auth": {
+      "loginSuccess": "Login Successful",
+      "loginByAssistant": "Claude Assistant has logged you in"
+    },
+    "status": {
+      "active": "Claude is helping you",
+      "inactive": "Claude is inactive"
+    }
   }
 }
