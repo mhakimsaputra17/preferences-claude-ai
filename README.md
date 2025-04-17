@@ -43,7 +43,9 @@ Key features include:
 - 🌐 Multi-language support (English, Spanish, French, German)
 - 🔔 Notification toggles
 - 🤖 Claude AI integration for conversational preference management
-- ⚡ Real-time updates via WebSockets
+- ⚠️ ~~Real-time updates via WebSockets~~ (Coming soon)
+
+> **Note**: Real-time synchronization between Claude Desktop and the web interface is currently under development and not fully functional in this version.
 
 This application demonstrates how web applications can be enhanced with AI assistants that manipulate the same underlying data as the traditional UI, creating a seamless dual-interface experience.
 
@@ -166,6 +168,10 @@ The system uses WebSockets to ensure real-time updates across all interfaces, me
 
 1. Install Claude Desktop from [claude.ai/desktop](https://claude.ai/desktop)
 
+   <!-- Claude Desktop Installation Screenshot - Will be added by user -->
+
+   [INSERT CLAUDE DESKTOP INSTALLATION SCREENSHOT HERE]
+
 2. Start the FastMCP server:
 
    ```bash
@@ -175,9 +181,17 @@ The system uses WebSockets to ensure real-time updates across all interfaces, me
 
 3. Open Claude Desktop and open the MCP connection menu by clicking the icon in the top-right corner
 
+   <!-- Claude Desktop MCP Connection Screenshot - Will be added by user -->
+
+   [INSERT CLAUDE DESKTOP MCP CONNECTION SCREENSHOT HERE]
+
 4. Select "Connect to local MCP server" and connect to the running server
 
 5. Claude will now be connected to the preferences system and can respond to preference-related requests
+
+   <!-- Claude Desktop Integration Demo Video - Will be added by user -->
+
+   [INSERT CLAUDE DESKTOP DEMO VIDEO HERE]
 
 ## 📖 Usage Guide
 
@@ -218,11 +232,16 @@ Claude can be used to manage preferences through natural language:
 1. Ensure the MCP server is running (`python mcp_server.py`)
 2. Connect Claude Desktop to the server
 3. Ask Claude to perform actions like:
+
    - "Login to my account with username 'user123' and password 'password123'"
    - "What are my current preferences?"
    - "Change my theme to dark mode"
    - "Switch my language to Spanish"
    - "Turn off notifications"
+
+   <!-- Claude Interaction Examples - Will be added by user -->
+
+   [INSERT CLAUDE INTERACTION EXAMPLES HERE]
 
 ## 🧪 Testing Preferences Features
 
@@ -242,16 +261,18 @@ To thoroughly test the preference system:
    - Connect Claude Desktop to the MCP server
    - Ask Claude to login with your credentials
    - Request Claude to change your theme
-   - Verify the web UI updates in real-time
+   - Verify the web UI updates after refreshing
    - Ask Claude to change your language
-   - Verify the web UI reflects the language change
+   - Verify the web UI reflects the language change after refreshing
    - Request Claude to toggle notifications
-   - Verify the setting changes in the web UI
+   - Verify the setting changes in the web UI after refreshing
+
+   <!-- Claude Testing Screenshots - Will be added by user -->
+
+   [INSERT CLAUDE TESTING SCREENSHOTS HERE]
 
 3. **Multi-Client Testing**:
-   - Open two browser windows with the app
-   - Make changes in one window
-   - Verify that changes appear in the other window in real-time
+   > **Note**: Real-time synchronization between clients is under development. Currently, changes made in one client require the other client to refresh to see updates.
 
 ## ⚠️ Limitations and Assumptions
 
@@ -262,6 +283,7 @@ To thoroughly test the preference system:
 - 🔐 **Claude Authentication**: The MCP server stores authentication tokens in memory, which are lost on restart
 - 🌐 **Internationalization**: Only four languages are currently supported
 - 📱 **Mobile Support**: The UI is responsive but not fully optimized for mobile devices
+- 🔄 **Real-time Updates**: WebSocket-based real-time updates between Claude and the web UI are currently not fully functional
 
 ### Assumptions
 
