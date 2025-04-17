@@ -134,8 +134,8 @@ The system uses WebSockets to ensure real-time updates across all interfaces, me
    ```bash
    pip install -r requirements.txt
    ```
-   and then
- ```bash
+   then
+   ```bash
    pip install -r requirements_claude.txt
    ```
 
