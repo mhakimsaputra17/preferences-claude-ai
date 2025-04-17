@@ -2,121 +2,195 @@ import React, { useEffect } from "react";
 import useAuth from "../hooks/useAuth";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchPreferences } from "../store/preferencesSlice";
-import { Link } from "react-router";
-import { Settings as SettingsIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import {
+  User,
+  Bell,
+  Moon,
+  Settings as SettingsIcon,
+  Check,
+} from "lucide-react";
+import AppLayout from "../components/Layout/AppLayout";
+import { addNotification } from "../store/notificationsSlice";
+import { showToast } from "../store/toastSlice";
 
 function Home() {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   const { preferences } = useSelector((state) => state.preferences);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
-  useEffect(() => {
-    dispatch(fetchPreferences());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(
+  //     showToast({
+  //       type: "success",
+  //       message: "Successfully logged in to your dashboard",
+  //       duration: 4000,
+  //     })
+  //   );
+  // }, [dispatch]);
+
+  // Function to add a test notification
+  const addTestNotification = () => {
+    dispatch(
+      addNotification({
+        title: t("notifications.newFeatureTitle"),
+        message: t("notifications.newFeatureMessage"),
+        titleKey: "notifications.newFeatureTitle",
+        messageKey: "notifications.newFeatureMessage",
+        type: "info",
+      })
+    );
+
+    dispatch(
+      showToast({
+        type: "info",
+        message: t("toast.notificationAdded"),
+        duration: 3000,
+      })
+    );
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-500 to-blue-600 dark:from-gray-800 dark:to-gray-900 p-4 transition-all duration-300">
-      <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mt-10 transition-all duration-300">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 dark:text-white">
-            Welcome to Your Dashboard
+    <AppLayout>
+      <div className="space-y-6">
+        {/* Welcome Header */}
+        <div className="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+          <h1 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
+            {t("home.welcome")}
           </h1>
-          <div className="flex space-x-3">
-            <Link
-              to="/settings"
-              className="px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition-colors flex items-center"
-            >
-              <SettingsIcon size={18} className="mr-1" />
-              Settings
-            </Link>
-            <button
-              onClick={logout}
-              className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
-            >
-              Logout
-            </button>
-          </div>
+          <p className="text-gray-600 dark:text-gray-300">
+            Here's an overview of your account and preferences.
+          </p>
         </div>
 
+        {/* User Profile */}
         {user && (
-          <div className="bg-teal-50 dark:bg-teal-900/30 p-6 rounded-lg border border-teal-100 dark:border-teal-800 transition-all duration-300">
-            <h2 className="text-xl font-semibold mb-4 text-teal-700 dark:text-teal-300">
-              Your Profile
-            </h2>
-            <div className="space-y-2">
-              <div className="flex">
-                <span className="font-medium w-32 text-gray-600 dark:text-gray-400">
-                  Username:
-                </span>
-                <span className="dark:text-white">{user.username}</span>
+          <div className="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+            <div className="flex items-center mb-4">
+              <div className="bg-gradient-to-r from-blue-500 to-teal-400 rounded-full p-1 mr-3">
+                <div className="bg-white dark:bg-gray-800 rounded-full p-2">
+                  <User className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+                </div>
               </div>
-              <div className="flex">
-                <span className="font-medium w-32 text-gray-600 dark:text-gray-400">
-                  User ID:
-                </span>
-                <span className="dark:text-white">{user.user_id}</span>
-              </div>
-              <div className="flex">
-                <span className="font-medium w-32 text-gray-600 dark:text-gray-400">
-                  Status:
-                </span>
-                <span
-                  className={`${
-                    user.is_active
-                      ? "text-green-600 dark:text-green-400"
-                      : "text-red-600 dark:text-red-400"
-                  }`}
-                >
-                  {user.is_active ? "Active" : "Inactive"}
-                </span>
-              </div>
+              <h2 className="text-xl font-semibold text-gray-800 dark:text-white">
+                {t("home.profile.title")}
+              </h2>
+            </div>
+
+            <div className="border-t border-gray-200 dark:border-gray-700 -mx-6 px-6 py-4">
+              <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-6">
+                <div>
+                  <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                    {t("home.profile.username")}
+                  </dt>
+                  <dd className="mt-1 text-gray-900 dark:text-white text-sm">
+                    {user.username}
+                  </dd>
+                </div>
+                <div>
+                  <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                    {t("home.profile.userId")}
+                  </dt>
+                  <dd className="mt-1 text-gray-900 dark:text-white text-sm">
+                    {user.user_id}
+                  </dd>
+                </div>
+                <div>
+                  <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                    {t("home.profile.status")}
+                  </dt>
+                  <dd className="mt-1 text-sm">
+                    <span
+                      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                        user.is_active
+                          ? "bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100"
+                          : "bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100"
+                      }`}
+                    >
+                      {user.is_active ? (
+                        <>
+                          <Check size={12} className="mr-1" />
+                          {t("home.profile.active")}
+                        </>
+                      ) : (
+                        t("home.profile.inactive")
+                      )}
+                    </span>
+                  </dd>
+                </div>
+              </dl>
             </div>
           </div>
         )}
 
-        <div className="mt-8 bg-blue-50 dark:bg-blue-900/30 p-6 rounded-lg border border-blue-100 dark:border-blue-800 transition-all duration-300">
-          <h2 className="text-xl font-semibold mb-4 text-blue-700 dark:text-blue-300">
-            Your Preferences
-          </h2>
-          <div className="space-y-2">
-            <div className="flex">
-              <span className="font-medium w-32 text-gray-600 dark:text-gray-400">
-                Theme:
-              </span>
-              <span className="capitalize dark:text-white">
-                {preferences.theme}
-              </span>
+        {/* Preferences */}
+        <div className="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+          <div className="flex items-center mb-4">
+            <div className="bg-gradient-to-r from-purple-500 to-indigo-400 rounded-full p-1 mr-3">
+              <div className="bg-white dark:bg-gray-800 rounded-full p-2">
+                <Moon className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+              </div>
             </div>
-            <div className="flex">
-              <span className="font-medium w-32 text-gray-600 dark:text-gray-400">
-                Language:
-              </span>
-              <span className="capitalize dark:text-white">
-                {preferences.language}
-              </span>
-            </div>
-            <div className="flex">
-              <span className="font-medium w-32 text-gray-600 dark:text-gray-400">
-                Notifications:
-              </span>
-              <span className="dark:text-white">
-                {preferences.notifications ? "Enabled" : "Disabled"}
-              </span>
-            </div>
+            <h2 className="text-xl font-semibold text-gray-800 dark:text-white">
+              {t("home.preferences.title")}
+            </h2>
+          </div>
+
+          <div className="border-t border-gray-200 dark:border-gray-700 -mx-6 px-6 py-4">
+            <dl className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-6">
+              <div>
+                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                  {t("home.preferences.theme")}
+                </dt>
+                <dd className="mt-1">
+                  <span
+                    className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize
+                      ${
+                        preferences.theme === "light"
+                          ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100"
+                          : preferences.theme === "dark"
+                          ? "bg-indigo-100 text-indigo-800 dark:bg-indigo-800 dark:text-indigo-100"
+                          : "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300"
+                      }`}
+                  >
+                    {preferences.theme}
+                  </span>
+                </dd>
+              </div>
+              <div>
+                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                  {t("home.preferences.language")}
+                </dt>
+                <dd className="mt-1">
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100">
+                    {t(`settings.language.${preferences.language}`)}
+                  </span>
+                </dd>
+              </div>
+              <div>
+                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                  {t("home.preferences.notifications")}
+                </dt>
+                <dd className="mt-1">
+                  <span
+                    className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                      preferences.notifications
+                        ? "bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100"
+                        : "bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100"
+                    }`}
+                  >
+                    {preferences.notifications
+                      ? t("home.preferences.enabled")
+                      : t("home.preferences.disabled")}
+                  </span>
+                </dd>
+              </div>
+            </dl>
           </div>
         </div>
-
-        <div className="mt-8 bg-blue-50 dark:bg-blue-900/30 p-6 rounded-lg border border-blue-100 dark:border-blue-800 transition-all duration-300">
-          <h2 className="text-xl font-semibold mb-4 text-blue-700 dark:text-blue-300">
-            Protected Content
-          </h2>
-          <p className="text-gray-700 dark:text-gray-300">
-            This page is protected and can only be accessed by authenticated
-            users. You have successfully logged in and can view this content.
-          </p>
-        </div>
       </div>
-    </div>
+    </AppLayout>
   );
 }
 
