@@ -1,10 +1,11 @@
-from fastapi import FastAPI, Depends, HTTPException, status, Body
+from fastapi import FastAPI, Depends, HTTPException, status, Body, WebSocket
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 import models, schemas, auth
 from database import engine, get_db
 from datetime import timedelta
+import json
 
 # Create database tables
 models.Base.metadata.create_all(bind=engine)
@@ -101,6 +102,41 @@ async def get_preferences(current_user: models.User = Depends(auth.get_current_a
         
     return user_preferences
 
+# Clients connected to WebSocket
+connected_clients = {}
+
+# WebSocket endpoint for real-time updates
+@app.websocket("/ws/preferences/{client_id}")
+async def websocket_endpoint(websocket: WebSocket, client_id: str):
+    await websocket.accept()
+    connected_clients[client_id] = websocket
+    try:
+        while True:
+            # Keep connection alive, waiting for messages
+            data = await websocket.receive_text()
+            # We could process incoming messages here if needed
+    except Exception:
+        if client_id in connected_clients:
+            del connected_clients[client_id]
+
+# Helper function to notify clients of preference changes
+async def notify_clients(user_id: int, preferences: dict):
+    """Notify all connected clients about preference changes"""
+    user_clients = [cid for cid, _ in connected_clients.items() if cid.startswith(f"user_{user_id}_")]
+    for client_id in user_clients:
+        websocket = connected_clients.get(client_id)
+        if websocket:
+            try:
+                await websocket.send_json({
+                    "type": "preferences_updated",
+                    "data": preferences
+                })
+            except Exception:
+                # Client disconnect handling
+                if client_id in connected_clients:
+                    del connected_clients[client_id]
+
+# Modify the update_preferences function to notify clients
 @app.post("/preferences", response_model=schemas.Preferences, tags=["Preferences"],
           summary="Update user preferences")
 async def update_preferences(
@@ -123,8 +159,63 @@ async def update_preferences(
     
     # Update preferences with new values
     for key, value in preferences.dict().items():
-        setattr(user_preferences, key, value)
+        if value is not None:  # Only update non-None values
+            setattr(user_preferences, key, value)
     
     db.commit()
     db.refresh(user_preferences)
+    
+    # Notify connected clients about the changes
+    # Convert to dict for JSON serialization
+    prefs_dict = {
+        "id": user_preferences.id,
+        "user_id": user_preferences.user_id,
+        "theme": user_preferences.theme,
+        "language": user_preferences.language,
+        "notifications": user_preferences.notifications
+    }
+    
+    # This runs in the background without blocking the response
+    try:
+        await notify_clients(current_user.id, prefs_dict)
+    except Exception as e:
+        # Log the error but don't fail the request
+        print(f"Error notifying clients: {str(e)}")
+        
     return user_preferences
+
+# Add notification endpoint
+@app.post("/notify", tags=["Notifications"],
+          summary="Send notification to connected clients")
+async def send_notification(
+    notification: dict = Body(...),
+    current_user: models.User = Depends(auth.get_current_active_user)
+):
+    """
+    Send a notification to all connected clients for a specific user.
+    Requires user_id and message in the request body.
+    """
+    user_id = notification.get("user_id")
+    message = notification.get("message")
+    
+    if not user_id or not message:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Both user_id and message are required"
+        )
+    
+    # Ensure only authorized users can send notifications
+    if current_user.id != user_id and not current_user.is_superuser:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Not authorized to send notifications to this user"
+        )
+        
+    try:
+        await notify_clients(user_id, message)
+        return {"status": "success", "message": "Notification sent"}
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to send notification: {str(e)}"
+        )
