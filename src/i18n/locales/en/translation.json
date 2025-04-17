@@ -1,0 +1,118 @@
+{
+  "settings": {
+    "title": "Settings",
+    "theme": {
+      "title": "Theme",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    },
+    "language": {
+      "title": "Language",
+      "english": "English",
+      "spanish": "Spanish",
+      "french": "French",
+      "german": "German"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "enabled": "Notifications enabled",
+      "disabled": "Notifications disabled"
+    },
+    "saveButton": "Save Preferences",
+    "saving": "Saving...",
+    "successMessage": "Preferences updated successfully!",
+    "errorMessage": "Failed to update preferences.",
+    "notification": {
+      "updateTitle": "Preferences Updated",
+      "updateSuccess": "Your preferences have been successfully updated."
+    }
+  },
+  "home": {
+    "welcome": "Welcome to Your Dashboard",
+    "settings": "Settings",
+    "logout": "Logout",
+    "profile": {
+      "title": "Your Profile",
+      "username": "Username",
+      "userId": "User ID",
+      "status": "Status",
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "preferences": {
+      "title": "Your Preferences",
+      "theme": "Theme",
+      "language": "Language",
+      "notifications": "Notifications",
+      "enabled": "Enabled",
+      "disabled": "Disabled"
+    },
+    "protectedContent": {
+      "title": "Protected Content",
+      "message": "This page is protected and can only be accessed by authenticated users. You have successfully logged in and can view this content."
+    },
+    "addTestNotification": "Add Test Notification",
+    "createSampleNotification": "Create a sample notification to test the system",
+    "configureSettings": "Configure your preferences and account settings"
+  },
+  "auth": {
+    "login": {
+      "title": "Sign In to Your Account",
+      "welcomeBack": "Welcome Back!",
+      "signInAccess": "Sign in to access your account.",
+      "noAccount": "Don't have an account?",
+      "register": "Register",
+      "signIn": "Sign In",
+      "error": "Login Error"
+    },
+    "register": {
+      "title": "Create an Account",
+      "welcome": "Welcome!",
+      "createAccount": "Create your account to get started.",
+      "haveAccount": "Already have an account?",
+      "login": "Login",
+      "signUp": "Sign Up",
+      "error": "Registration Error"
+    },
+    "form": {
+      "username": "Username",
+      "password": "Password",
+      "enterUsername": "Enter your username",
+      "enterPassword": "Enter your password",
+      "processing": "Processing..."
+    }
+  },
+  "navigation": {
+    "home": "Home",
+    "settings": "Settings",
+    "logout": "Logout",
+    "profile": "Profile",
+    "currentLanguage": "Current Language"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "view": "View notifications",
+    "clearAll": "Clear all",
+    "noNotifications": "No notifications yet",
+    "markAsRead": "Mark as read",
+    "justNow": "Just now",
+    "minutesAgo": "m ago",
+    "hoursAgo": "h ago",
+    "daysAgo": "d ago",
+    "welcomeTitle": "Welcome to Claude AI",
+    "welcomeMessage": "Thank you for using our application. Explore the settings to customize your experience.",
+    "newFeatureTitle": "New Feature Available",
+    "newFeatureMessage": "Check out the new notification system we just added!"
+  },
+  "toast": {
+    "close": "Close",
+    "successTitle": "Success",
+    "errorTitle": "Error",
+    "warningTitle": "Warning",
+    "infoTitle": "Information",
+    "loginSuccess": "Successfully logged in to your dashboard",
+    "notificationAdded": "New notification added",
+    "preferencesUpdated": "Your preferences have been successfully updated"
+  }
+}

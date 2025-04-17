@@ -1,0 +1,118 @@
+{
+  "settings": {
+    "title": "Einstellungen",
+    "theme": {
+      "title": "Thema",
+      "light": "Hell",
+      "dark": "Dunkel",
+      "system": "System"
+    },
+    "language": {
+      "title": "Sprache",
+      "english": "Englisch",
+      "spanish": "Spanisch",
+      "french": "Französisch",
+      "german": "Deutsch"
+    },
+    "notifications": {
+      "title": "Benachrichtigungen",
+      "enabled": "Benachrichtigungen aktiviert",
+      "disabled": "Benachrichtigungen deaktiviert"
+    },
+    "saveButton": "Einstellungen speichern",
+    "saving": "Speichern...",
+    "successMessage": "Einstellungen erfolgreich aktualisiert!",
+    "errorMessage": "Fehler beim Aktualisieren der Einstellungen.",
+    "notification": {
+      "updateTitle": "Einstellungen Aktualisiert",
+      "updateSuccess": "Ihre Einstellungen wurden erfolgreich aktualisiert."
+    }
+  },
+  "home": {
+    "welcome": "Willkommen bei Ihrem Dashboard",
+    "settings": "Einstellungen",
+    "logout": "Abmelden",
+    "profile": {
+      "title": "Ihr Profil",
+      "username": "Benutzername",
+      "userId": "Benutzer-ID",
+      "status": "Status",
+      "active": "Aktiv",
+      "inactive": "Inaktiv"
+    },
+    "preferences": {
+      "title": "Ihre Einstellungen",
+      "theme": "Thema",
+      "language": "Sprache",
+      "notifications": "Benachrichtigungen",
+      "enabled": "Aktiviert",
+      "disabled": "Deaktiviert"
+    },
+    "protectedContent": {
+      "title": "Geschützter Inhalt",
+      "message": "Diese Seite ist geschützt und kann nur von authentifizierten Benutzern aufgerufen werden. Sie haben sich erfolgreich angemeldet und können diesen Inhalt anzeigen."
+    },
+    "addTestNotification": "Test-Benachrichtigung hinzufügen",
+    "createSampleNotification": "Erstellen Sie eine Beispielbenachrichtigung, um das System zu testen",
+    "configureSettings": "Konfigurieren Sie Ihre Einstellungen und Kontoparameter"
+  },
+  "navigation": {
+    "home": "Startseite",
+    "settings": "Einstellungen",
+    "logout": "Abmelden",
+    "profile": "Profil",
+    "currentLanguage": "Aktuelle Sprache"
+  },
+  "notifications": {
+    "title": "Benachrichtigungen",
+    "view": "Benachrichtigungen anzeigen",
+    "clearAll": "Alle löschen",
+    "noNotifications": "Noch keine Benachrichtigungen",
+    "markAsRead": "Als gelesen markieren",
+    "justNow": "Gerade eben",
+    "minutesAgo": "m zuvor",
+    "hoursAgo": "h zuvor",
+    "daysAgo": "T zuvor",
+    "welcomeTitle": "Willkommen bei Claude AI",
+    "welcomeMessage": "Vielen Dank, dass Sie unsere Anwendung nutzen. Entdecken Sie die Einstellungen, um Ihr Erlebnis anzupassen.",
+    "newFeatureTitle": "Neue Funktion Verfügbar",
+    "newFeatureMessage": "Entdecken Sie das neue Benachrichtigungssystem, das wir gerade hinzugefügt haben!"
+  },
+  "toast": {
+    "close": "Schließen",
+    "successTitle": "Erfolg",
+    "errorTitle": "Fehler",
+    "warningTitle": "Warnung",
+    "infoTitle": "Information",
+    "loginSuccess": "Erfolgreich bei Ihrem Dashboard angemeldet",
+    "notificationAdded": "Neue Benachrichtigung hinzugefügt",
+    "preferencesUpdated": "Ihre Einstellungen wurden erfolgreich aktualisiert"
+  },
+  "auth": {
+    "login": {
+      "title": "In Ihren Account einloggen",
+      "welcomeBack": "Willkommen zurück!",
+      "signInAccess": "Melden Sie sich an, um auf Ihr Konto zuzugreifen.",
+      "noAccount": "Sie haben noch kein Konto?",
+      "register": "Registrieren",
+      "signIn": "Anmelden",
+      "error": "Anmeldefehler"
+    },
+    "register": {
+      "title": "Konto erstellen",
+      "welcome": "Willkommen!",
+      "createAccount": "Erstellen Sie Ihr Konto, um zu beginnen.",
+      "haveAccount": "Sie haben bereits ein Konto?",
+      "login": "Anmelden",
+      "signUp": "Registrieren",
+      "error": "Registrierungsfehler"
+    },
+    "form": {
+      "username": "Benutzername",
+      "password": "Passwort",
+      "enterUsername": "Geben Sie Ihren Benutzernamen ein",
+      "enterPassword": "Geben Sie Ihr Passwort ein",
+      "processing": "Verarbeitung..."
+    }
+  }
+}

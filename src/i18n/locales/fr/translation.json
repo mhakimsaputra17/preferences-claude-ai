@@ -1,0 +1,118 @@
+{
+  "settings": {
+    "title": "Paramètres",
+    "theme": {
+      "title": "Thème",
+      "light": "Clair",
+      "dark": "Sombre",
+      "system": "Système"
+    },
+    "language": {
+      "title": "Langue",
+      "english": "Anglais",
+      "spanish": "Espagnol",
+      "french": "Français",
+      "german": "Allemand"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "enabled": "Notifications activées",
+      "disabled": "Notifications désactivées"
+    },
+    "saveButton": "Enregistrer les Préférences",
+    "saving": "Enregistrement...",
+    "successMessage": "Préférences mises à jour avec succès!",
+    "errorMessage": "Échec de la mise à jour des préférences.",
+    "notification": {
+      "updateTitle": "Préférences Mises à Jour",
+      "updateSuccess": "Vos préférences ont été mises à jour avec succès."
+    }
+  },
+  "home": {
+    "welcome": "Bienvenue sur Votre Tableau de Bord",
+    "settings": "Paramètres",
+    "logout": "Déconnexion",
+    "profile": {
+      "title": "Votre Profil",
+      "username": "Nom d'utilisateur",
+      "userId": "ID utilisateur",
+      "status": "Statut",
+      "active": "Actif",
+      "inactive": "Inactif"
+    },
+    "preferences": {
+      "title": "Vos Préférences",
+      "theme": "Thème",
+      "language": "Langue",
+      "notifications": "Notifications",
+      "enabled": "Activées",
+      "disabled": "Désactivées"
+    },
+    "protectedContent": {
+      "title": "Contenu Protégé",
+      "message": "Cette page est protégée et accessible uniquement par les utilisateurs authentifiés. Vous êtes connecté avec succès et pouvez consulter ce contenu."
+    },
+    "addTestNotification": "Ajouter une Notification de Test",
+    "createSampleNotification": "Créer une notification d'exemple pour tester le système",
+    "configureSettings": "Configurez vos préférences et les paramètres de votre compte"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "settings": "Paramètres",
+    "logout": "Déconnexion",
+    "profile": "Profil",
+    "currentLanguage": "Langue Actuelle"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "view": "Voir les notifications",
+    "clearAll": "Tout effacer",
+    "noNotifications": "Pas encore de notifications",
+    "markAsRead": "Marquer comme lu",
+    "justNow": "À l'instant",
+    "minutesAgo": "m il y a",
+    "hoursAgo": "h il y a",
+    "daysAgo": "j il y a",
+    "welcomeTitle": "Bienvenue sur Claude AI",
+    "welcomeMessage": "Merci d'utiliser notre application. Explorez les paramètres pour personnaliser votre expérience.",
+    "newFeatureTitle": "Nouvelle Fonctionnalité Disponible",
+    "newFeatureMessage": "Découvrez le nouveau système de notifications que nous venons d'ajouter!"
+  },
+  "toast": {
+    "close": "Fermer",
+    "successTitle": "Succès",
+    "errorTitle": "Erreur",
+    "warningTitle": "Avertissement",
+    "infoTitle": "Information",
+    "loginSuccess": "Connecté avec succès à votre tableau de bord",
+    "notificationAdded": "Nouvelle notification ajoutée",
+    "preferencesUpdated": "Vos préférences ont été mises à jour avec succès"
+  },
+  "auth": {
+    "login": {
+      "title": "Connexion à Votre Compte",
+      "welcomeBack": "Bon Retour!",
+      "signInAccess": "Connectez-vous pour accéder à votre compte.",
+      "noAccount": "Vous n'avez pas de compte?",
+      "register": "S'inscrire",
+      "signIn": "Se Connecter",
+      "error": "Erreur de Connexion"
+    },
+    "register": {
+      "title": "Créer un Compte",
+      "welcome": "Bienvenue!",
+      "createAccount": "Créez votre compte pour commencer.",
+      "haveAccount": "Vous avez déjà un compte?",
+      "login": "Connexion",
+      "signUp": "S'inscrire",
+      "error": "Erreur d'Inscription"
+    },
+    "form": {
+      "username": "Nom d'utilisateur",
+      "password": "Mot de passe",
+      "enterUsername": "Entrez votre nom d'utilisateur",
+      "enterPassword": "Entrez votre mot de passe",
+      "processing": "Traitement en cours..."
+    }
+  }
+}

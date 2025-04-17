@@ -1,0 +1,118 @@
+{
+  "settings": {
+    "title": "Configuraciones",
+    "theme": {
+      "title": "Tema",
+      "light": "Claro",
+      "dark": "Oscuro",
+      "system": "Sistema"
+    },
+    "language": {
+      "title": "Idioma",
+      "english": "Inglés",
+      "spanish": "Español",
+      "french": "Francés",
+      "german": "Alemán"
+    },
+    "notifications": {
+      "title": "Notificaciones",
+      "enabled": "Notificaciones habilitadas",
+      "disabled": "Notificaciones deshabilitadas"
+    },
+    "saveButton": "Guardar Preferencias",
+    "saving": "Guardando...",
+    "successMessage": "¡Preferencias actualizadas correctamente!",
+    "errorMessage": "Error al actualizar las preferencias.",
+    "notification": {
+      "updateTitle": "Preferencias Actualizadas",
+      "updateSuccess": "Tus preferencias han sido actualizadas con éxito."
+    }
+  },
+  "home": {
+    "welcome": "Bienvenido a tu Panel",
+    "settings": "Configuraciones",
+    "logout": "Cerrar sesión",
+    "profile": {
+      "title": "Tu Perfil",
+      "username": "Nombre de usuario",
+      "userId": "ID de usuario",
+      "status": "Estado",
+      "active": "Activo",
+      "inactive": "Inactivo"
+    },
+    "preferences": {
+      "title": "Tus Preferencias",
+      "theme": "Tema",
+      "language": "Idioma",
+      "notifications": "Notificaciones",
+      "enabled": "Habilitadas",
+      "disabled": "Deshabilitadas"
+    },
+    "protectedContent": {
+      "title": "Contenido Protegido",
+      "message": "Esta página está protegida y solo pueden acceder a ella usuarios autenticados. Has iniciado sesión correctamente y puedes ver este contenido."
+    },
+    "addTestNotification": "Añadir Notificación de Prueba",
+    "createSampleNotification": "Crear una notificación de muestra para probar el sistema",
+    "configureSettings": "Configure sus preferencias y la configuración de su cuenta"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "settings": "Configuraciones",
+    "logout": "Cerrar sesión",
+    "profile": "Perfil",
+    "currentLanguage": "Idioma Actual"
+  },
+  "notifications": {
+    "title": "Notificaciones",
+    "view": "Ver notificaciones",
+    "clearAll": "Borrar todo",
+    "noNotifications": "No hay notificaciones aún",
+    "markAsRead": "Marcar como leído",
+    "justNow": "Ahora mismo",
+    "minutesAgo": "m atrás",
+    "hoursAgo": "h atrás",
+    "daysAgo": "d atrás",
+    "welcomeTitle": "Bienvenido a Claude AI",
+    "welcomeMessage": "Gracias por usar nuestra aplicación. Explore las configuraciones para personalizar su experiencia.",
+    "newFeatureTitle": "Nueva Funcionalidad Disponible",
+    "newFeatureMessage": "¡Mira el nuevo sistema de notificaciones que acabamos de añadir!"
+  },
+  "toast": {
+    "close": "Cerrar",
+    "successTitle": "Éxito",
+    "errorTitle": "Error",
+    "warningTitle": "Advertencia",
+    "infoTitle": "Información",
+    "loginSuccess": "Inicio de sesión exitoso en su panel",
+    "notificationAdded": "Nueva notificación añadida",
+    "preferencesUpdated": "Sus preferencias han sido actualizadas exitosamente"
+  },
+  "auth": {
+    "login": {
+      "title": "Iniciar Sesión",
+      "welcomeBack": "¡Bienvenido de nuevo!",
+      "signInAccess": "Inicia sesión para acceder a tu cuenta.",
+      "noAccount": "¿No tienes una cuenta?",
+      "register": "Registrarse",
+      "signIn": "Iniciar Sesión",
+      "error": "Error de Inicio de Sesión"
+    },
+    "register": {
+      "title": "Crear una Cuenta",
+      "welcome": "¡Bienvenido!",
+      "createAccount": "Crea tu cuenta para comenzar.",
+      "haveAccount": "¿Ya tienes una cuenta?",
+      "login": "Iniciar Sesión",
+      "signUp": "Registrarse",
+      "error": "Error de Registro"
+    },
+    "form": {
+      "username": "Nombre de usuario",
+      "password": "Contraseña",
+      "enterUsername": "Ingresa tu nombre de usuario",
+      "enterPassword": "Ingresa tu contraseña",
+      "processing": "Procesando..."
+    }
+  }
+}
