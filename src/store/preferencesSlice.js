@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import i18n from "../i18n/i18n";
 
 const API_BASE_URL = "http://localhost:8000";
 
@@ -39,14 +40,23 @@ export const applyThemeClass = (theme) => {
   );
 };
 
+// This function changes the language using i18next
+export const applyLanguage = (language) => {
+  i18n.changeLanguage(language);
+  // Save to localStorage for persistence
+  localStorage.setItem("userLanguage", language);
+  console.log("Language applied:", language);
+};
+
 // Async thunks
 export const fetchPreferences = createAsyncThunk(
   "preferences/fetchPreferences",
   async (_, { rejectWithValue }) => {
     const token = localStorage.getItem("token");
     if (!token) {
-      // Apply default theme (light) if no token exists
+      // Apply default theme (light) and language if no token exists
       applyThemeClass(defaultPreferences.theme);
+      applyLanguage(defaultPreferences.language);
       return defaultPreferences;
     }
 
@@ -60,15 +70,18 @@ export const fetchPreferences = createAsyncThunk(
       if (response.ok) {
         const data = await response.json();
         applyThemeClass(data.theme);
+        applyLanguage(data.language);
         return data;
       } else {
-        // If preferences don't exist yet, use defaults (light theme)
+        // If preferences don't exist yet, use defaults
         applyThemeClass(defaultPreferences.theme);
+        applyLanguage(defaultPreferences.language);
         return defaultPreferences;
       }
     } catch (error) {
       console.error("Failed to fetch preferences", error);
       applyThemeClass(defaultPreferences.theme);
+      applyLanguage(defaultPreferences.language);
       return rejectWithValue("Failed to fetch preferences");
     }
   }
@@ -93,6 +106,7 @@ export const updatePreferences = createAsyncThunk(
       if (response.ok) {
         const data = await response.json();
         applyThemeClass(data.theme);
+        applyLanguage(data.language);
         return data;
       }
       return rejectWithValue("Failed to update preferences");
@@ -113,6 +127,10 @@ const preferencesSlice = createSlice({
   reducers: {
     applyTheme: (state, action) => {
       applyThemeClass(action.payload);
+    },
+    applyLanguageChange: (state, action) => {
+      applyLanguage(action.payload);
+      state.preferences.language = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -144,6 +162,6 @@ const preferencesSlice = createSlice({
   },
 });
 
-export const { applyTheme } = preferencesSlice.actions;
+export const { applyTheme, applyLanguageChange } = preferencesSlice.actions;
 
 export default preferencesSlice.reducer;
