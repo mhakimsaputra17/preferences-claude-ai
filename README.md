@@ -168,10 +168,6 @@ The system uses WebSockets to ensure real-time updates across all interfaces, me
 
 1. Install Claude Desktop from [claude.ai/desktop](https://claude.ai/desktop)
 
-   <!-- Claude Desktop Installation Screenshot - Will be added by user -->
-
-   [INSERT CLAUDE DESKTOP INSTALLATION SCREENSHOT HERE]
-
 2. Start the FastMCP server:
 
    ```bash
@@ -179,11 +175,12 @@ The system uses WebSockets to ensure real-time updates across all interfaces, me
    python mcp_server.py
    ```
 
-3. Open Claude Desktop and open the MCP connection menu by clicking the icon in the top-right corner
+3. Open Claude Desktop and open the settings menu by clicking the icon in the top-left corner
 
    <!-- Claude Desktop MCP Connection Screenshot - Will be added by user -->
 
-   [INSERT CLAUDE DESKTOP MCP CONNECTION SCREENSHOT HERE]
+   ![Screenshot (542)](https://github.com/user-attachments/assets/8cdbc87f-40b6-4db4-9d95-26f7d84a7626)
+
 
 4. Select "Connect to local MCP server" and connect to the running server
 
