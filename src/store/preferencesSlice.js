@@ -123,6 +123,7 @@ const preferencesSlice = createSlice({
     preferences: defaultPreferences,
     status: "idle", // 'idle' | 'loading' | 'succeeded' | 'failed'
     error: null,
+    claudeActive: false, // New state to track Claude activity
   },
   reducers: {
     applyTheme: (state, action) => {
@@ -131,6 +132,10 @@ const preferencesSlice = createSlice({
     applyLanguageChange: (state, action) => {
       applyLanguage(action.payload);
       state.preferences.language = action.payload;
+    },
+    // Track Claude activity
+    setClaudeActive: (state, action) => {
+      state.claudeActive = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -162,6 +167,10 @@ const preferencesSlice = createSlice({
   },
 });
 
-export const { applyTheme, applyLanguageChange } = preferencesSlice.actions;
+export const {
+  applyTheme,
+  applyLanguageChange,
+  setClaudeActive, // Export new action
+} = preferencesSlice.actions;
 
 export default preferencesSlice.reducer;
