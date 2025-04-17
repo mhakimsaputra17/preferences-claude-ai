@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Lock, Mail, User } from "lucide-react";
+import { Lock, User, Eye, EyeOff } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 function FormAuth({
   title,
@@ -11,6 +12,8 @@ function FormAuth({
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const { t } = useTranslation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,14 +26,18 @@ function FormAuth({
     }
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
-    <div className="md:w-1/2 p-10 flex flex-col justify-center dark:bg-gray-800 transition-colors duration-300">
+    <div className="md:w-1/2 p-6 md:p-10 flex flex-col justify-center dark:bg-gray-800 transition-colors duration-300">
       <div className="mb-8 text-center">
-        <div className="bg-teal-50 dark:bg-teal-900/50 w-16 h-16 mx-auto rounded-full flex items-center justify-center transform transition-transform duration-300 hover:scale-110">
-          <User size={32} className="text-teal-600 dark:text-teal-400" />
+        <div className="bg-gradient-to-r from-teal-400 to-blue-500 w-16 h-16 mx-auto rounded-full flex items-center justify-center transform transition-transform duration-300 hover:scale-110 shadow-lg">
+          <User size={32} className="text-white" />
         </div>
         <h2 className="mt-6 text-2xl font-bold text-gray-800 dark:text-white tracking-tight">
-          {title}
+          {t(title)}
         </h2>
       </div>
 
@@ -41,7 +48,7 @@ function FormAuth({
               htmlFor="username"
               className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 ml-1"
             >
-              Username
+              {t("auth.form.username")}
             </label>
             <div className="relative">
               <User
@@ -55,7 +62,7 @@ function FormAuth({
                 autoComplete="username"
                 required
                 className="pl-11 w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all duration-300 ease-in-out"
-                placeholder="Enter your username"
+                placeholder={t("auth.form.enterUsername")}
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
@@ -69,7 +76,7 @@ function FormAuth({
               htmlFor="password"
               className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 ml-1"
             >
-              Password
+              {t("auth.form.password")}
             </label>
             <div className="relative">
               <Lock
@@ -79,16 +86,27 @@ function FormAuth({
               <input
                 id="password"
                 name="password"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 autoComplete={
                   showNameField ? "new-password" : "current-password"
                 }
                 required
-                className="pl-11 w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all duration-300 ease-in-out"
-                placeholder="Enter your password"
+                className="pl-11 pr-11 w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all duration-300 ease-in-out"
+                placeholder={t("auth.form.enterPassword")}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+              <button
+                type="button"
+                className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? (
+                  <EyeOff className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                ) : (
+                  <Eye className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                )}
+              </button>
             </div>
           </div>
         )}
@@ -123,7 +141,7 @@ function FormAuth({
                 ></path>
               </svg>
             ) : null}
-            {isLoading ? "Processing..." : buttonText}
+            {isLoading ? t("auth.form.processing") : t(buttonText)}
           </button>
         </div>
       </form>
