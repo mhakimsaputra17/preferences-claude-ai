@@ -134,15 +134,19 @@ The system uses WebSockets to ensure real-time updates across all interfaces, me
    ```bash
    pip install -r requirements.txt
    ```
+   and then
+ ```bash
+   pip install -r requirements_claude.txt
+   ```
 
-4. Create and configure environment variables:
+5. Create and configure environment variables:
 
    ```bash
    cp .env.example .env
    # Edit .env with your preferred settings
    ```
 
-5. Run the backend server:
+6. Run the backend server:
    ```bash
    uvicorn main:app --reload
    ```
