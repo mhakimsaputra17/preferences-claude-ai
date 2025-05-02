@@ -134,15 +134,19 @@ The system uses WebSockets to ensure real-time updates across all interfaces, me
    ```bash
    pip install -r requirements.txt
    ```
+   then
+   ```bash
+   pip install -r requirements_claude.txt
+   ```
 
-4. Create and configure environment variables:
+5. Create and configure environment variables:
 
    ```bash
    cp .env.example .env
    # Edit .env with your preferred settings
    ```
 
-5. Run the backend server:
+6. Run the backend server:
    ```bash
    uvicorn main:app --reload
    ```
@@ -187,17 +191,17 @@ The system uses WebSockets to ensure real-time updates across all interfaces, me
    ```bash
    cd backend
    # This command will automatically generate the necessary config in claude_desktop_config.json
-   mcp install mcp_server.py
+   fastmcp install mcp_server.py
    ```
 
 6. **Run the MCP server**:
 
    ```bash
    # Development mode with auto-reload
-   mcp dev mcp_server.py
+   fastmcp dev mcp_server.py
 
    # OR Production mode
-   mcp run mcp_server.py
+   fastmcp run mcp_server.py
    ```
 
 7. **Restart Claude Desktop**:
@@ -208,9 +212,6 @@ The system uses WebSockets to ensure real-time updates across all interfaces, me
 
 8. Claude will now be connected to the preferences system and can respond to preference-related requests
 
-   <!-- Claude Desktop Integration Demo Video - Will be added by user -->
-
-   [INSERT CLAUDE DESKTOP DEMO VIDEO HERE]
 
 ## 📖 Usage Guide
 
@@ -248,7 +249,7 @@ Full API documentation is available at `http://localhost:8000/docs` when the bac
 
 Claude can be used to manage preferences through natural language:
 
-1. Ensure the MCP server is running (`python mcp_server.py`)
+1. Ensure the MCP server is running (`fastmcp run mcp_server.py`)
 2. Connect Claude Desktop to the server
 3. Ask Claude to perform actions like:
 
@@ -260,7 +261,11 @@ Claude can be used to manage preferences through natural language:
 
    <!-- Claude Interaction Examples - Will be added by user -->
 
-   [INSERT CLAUDE INTERACTION EXAMPLES HERE]
+  
+
+https://github.com/user-attachments/assets/1e829469-4d2e-425b-8af7-ba53b83e3cff
+
+
 
 ## 🧪 Testing Preferences Features
 
@@ -286,9 +291,7 @@ To thoroughly test the preference system:
    - Request Claude to toggle notifications
    - Verify the setting changes in the web UI after refreshing
 
-   <!-- Claude Testing Screenshots - Will be added by user -->
-
-   [INSERT CLAUDE TESTING SCREENSHOTS HERE]
+  
 
 3. **Multi-Client Testing**:
    > **Note**: Real-time synchronization between clients is under development. Currently, changes made in one client require the other client to refresh to see updates.
