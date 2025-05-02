@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Lock, User, Eye, EyeOff } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import useFormValidation from "../../hooks/useFormValidation";
 
 function FormAuth({
   title,
@@ -13,10 +14,51 @@ function FormAuth({
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [touched, setTouched] = useState({ username: false, password: false });
   const { t } = useTranslation();
+
+  // Custom hook for form validation
+  const { errors, validateUsername, validatePassword, validateForm } =
+    useFormValidation();
+
+  // Handle input change and validation
+  const handleUsernameChange = (e) => {
+    const value = e.target.value;
+    setUsername(value);
+    if (touched.username) {
+      validateUsername(value);
+    }
+  };
+
+  // Handle password change and validation
+  const handlePasswordChange = (e) => {
+    const value = e.target.value;
+    setPassword(value);
+    if (touched.password) {
+      validatePassword(value);
+    }
+  };
+
+  // Mark field as touched when user interacts with it
+  const handleBlur = (field) => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+
+    if (field === "username") {
+      validateUsername(username);
+    } else if (field === "password") {
+      validatePassword(password);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const isValid = validateForm({ username, password });
+
+    if (!isValid) {
+      setTouched({ username: true, password: true });
+      return;
+    }
+
     setIsLoading(true);
 
     try {
@@ -29,6 +71,12 @@ function FormAuth({
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+
+  const isFormValid =
+    !errors.username &&
+    !errors.password &&
+    username.trim() !== "" &&
+    password.trim() !== "";
 
   return (
     <div className="md:w-1/2 p-6 md:p-10 flex flex-col justify-center dark:bg-gray-800 transition-colors duration-300">
@@ -61,12 +109,22 @@ function FormAuth({
                 type="text"
                 autoComplete="username"
                 required
-                className="pl-11 w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all duration-300 ease-in-out"
+                className={`pl-11 w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all duration-300 ease-in-out ${
+                  touched.username && errors.username
+                    ? "border-red-500 dark:border-red-500"
+                    : "border-gray-300 dark:border-gray-600"
+                }`}
                 placeholder={t("auth.form.enterUsername")}
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={handleUsernameChange}
+                onBlur={() => handleBlur("username")}
               />
             </div>
+            {touched.username && errors.username && (
+              <p className="mt-1 text-sm text-red-500 ml-1">
+                {errors.username}
+              </p>
+            )}
           </div>
         )}
 
@@ -91,10 +149,15 @@ function FormAuth({
                   showNameField ? "new-password" : "current-password"
                 }
                 required
-                className="pl-11 pr-11 w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all duration-300 ease-in-out"
+                className={`pl-11 pr-11 w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all duration-300 ease-in-out ${
+                  touched.password && errors.password
+                    ? "border-red-500 dark:border-red-500"
+                    : "border-gray-300 dark:border-gray-600"
+                }`}
                 placeholder={t("auth.form.enterPassword")}
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handlePasswordChange}
+                onBlur={() => handleBlur("password")}
               />
               <button
                 type="button"
@@ -108,15 +171,26 @@ function FormAuth({
                 )}
               </button>
             </div>
+            {touched.password && errors.password && (
+              <p className="mt-1 text-sm text-red-500 ml-1">
+                {errors.password}
+              </p>
+            )}
           </div>
         )}
 
         <div className="pt-3">
           <button
             type="submit"
-            disabled={isLoading}
+            disabled={
+              isLoading ||
+              (touched.username && touched.password && !isFormValid)
+            }
             className={`w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-base font-medium text-white bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-all duration-300 ${
-              isLoading ? "opacity-90" : "transform hover:-translate-y-0.5"
+              isLoading ||
+              (touched.username && touched.password && !isFormValid)
+                ? "opacity-70 cursor-not-allowed"
+                : "transform hover:-translate-y-0.5"
             }`}
           >
             {isLoading ? (
