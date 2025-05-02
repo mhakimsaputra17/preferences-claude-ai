@@ -84,11 +84,11 @@ function Register() {
 
       {/* Error toast */}
       {registrationError && (
-        <div className="fixed bottom-6 right-6 max-w-sm bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden z-50 border-l-4 border-red-500 transition-all duration-300 animate-fade-in-up">
+        <div className="fixed bottom-6 right-6 max-w-sm bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden z-50 border-l-4 border-red-500 transition-all duration-300 animate-in slide-in-from-right-5">
           <div className="flex p-4">
             <div className="flex-shrink-0 text-red-500">
               <svg
-                className="h-5 w-5 transform transition-transform hover:scale-110"
+                className="h-5 w-5 transition-transform hover:scale-110"
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >
@@ -99,7 +99,7 @@ function Register() {
                 />
               </svg>
             </div>
-            <div className="ml-3 w-0 flex-1">
+            <div className="ml-3 flex-1">
               <p className="text-sm font-medium text-gray-900 dark:text-white">
                 {t("auth.register.error")}
               </p>
@@ -110,13 +110,10 @@ function Register() {
             <div className="ml-4 flex-shrink-0 flex">
               <button
                 onClick={dismissError}
-                className="text-gray-400 hover:text-gray-500 focus:outline-none"
+                className="inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 rounded-full p-1"
               >
                 <span className="sr-only">Close</span>
-                <X
-                  size={16}
-                  className="transform transition-transform hover:scale-110"
-                />
+                <X size={16} className="transition-transform hover:scale-110" />
               </button>
             </div>
           </div>
